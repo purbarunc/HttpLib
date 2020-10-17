@@ -1,0 +1,128 @@
+.fildHolder{
+    padding: 10px 0;
+    
+}
+
+.fildHolder span input{
+    padding: 2px;
+}
+
+.fildHolder label {
+    font-weight: 800;
+}
+
+pre {
+    white-space: pre-wrap;
+    background: hsl(30,80%,90%);
+    border: 1px solid black;
+    padding:10px;
+    overflow: auto;
+}
+
+
+.loader {
+    width: 133px;
+    position: relative;
+    left: 41%;
+}
+
+.referanceWrap{
+    padding: 10px;
+    background: hsl(30,80%,90%);
+    border: 1px solid black;
+    padding:10px;
+}
+
+.referanceWrap .exmplUrl{
+    margin-left: 20px; 
+    
+}
+
+#postData{
+    display: none;
+}
+
+
+.fildHolder span{
+    display: inline-block;
+    width: 100%;
+    margin-top: 7px;
+}
+
+.fildHolder input#url {
+    width: 100%;
+}
+
+.methodList {
+    margin-left: 105px;
+}
+
+.testlWrap{
+    width: 40%;
+    border-right: 1px solid black;
+    background-color: white;
+    float: left;
+}
+
+.testlWrap .container{
+    padding-right: 10px;
+    
+}
+
+.docWrap{
+    float: left;
+    width: 59%;
+}
+
+.docWrap .container{
+    padding-left: 10px;
+    
+}
+
+.fildHolder.submitButton input {
+    width: 50%;
+    height: 33px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-color: #4CAF50;
+}
+
+.fildHolder.submitButton {
+    text-align: center;
+}
+
+.sampleCodeIndentLevel1 {
+    margin-left: 15px;
+    padding: 5px;
+}
+
+.sampleCodeIndentLevel1 label{
+    margin-right: 5px;
+    font-weight: 600;
+}
+
+.sampleCodeIndentLevel2 {
+    margin-left: 25px;
+}
+
+h2{
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-bottom: 19px;
+}
+
+.container .title{
+    text-align: center;
+}
+
+label {
+    font-weight: 800;
+}
+
+table td {
+    padding: 11px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+  }

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="lib/ajaxHandler.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h2>Javascript library to handle Http requests</h2>
+    <div class="testlWrap">
+        <div class="container">
+            <div class="referanceWrap">
+                <div class="intro">
+                    <label> Referance API Url</label>
+                    <!-- <br> -->
+                    <!-- <a href="http://dummy.restapiexample.com/" target="_blank">http://dummy.restapiexample.com/</a> -->
+                </div>
+                <div class="exmplUrl GET">
+                    <p>
+                        GET:
+                        <br> http://dummy.restapiexample.com/api/v1/employees
+                    </p>
+                    <p>
+                        http://dummy.restapiexample.com/api/v1/employee/1
+                    </p>
+                </div>
+                <div class="exmplUrl POST">
+                    <p>
+                        POST:
+                        <br> http://dummy.restapiexample.com/api/v1/create
+                    </p>
+                </div>
+                <div class="exmplUrl PUT">
+                    <p>
+                        PUT:
+                        <br> http://dummy.restapiexample.com/api/v1/update/1/
+                    </p>
+                </div>
+                <div class="exmplUrl DELETE">
+                    <p>
+                        DELETE:
+                        <br> http://dummy.restapiexample.com/api/v1/delete/2/
+                    </p>
+                </div>
+            </div>
+            <div class="formContainer">
+                <form id='myform'>
+                    <div class="fildHolder">
+                        <label>Url:</label>
+                        <span>
+                            <input value="http://dummy.restapiexample.com/api/v1/employees"
+                                placeholder="Ex:example.com/dataUrl" name="url" id="url" />
+                        </span>
+                    </div>
+                    <div class="fildHolder">
+                        <label>Method:</label>
+
+                        <!-- <input value="GET" placeholder="Ex:POST" name="method" id="method" /> -->
+                        <div class="methodList">
+                            <input checked onclick="selectMethod('GET')" type="radio" name="method" value="GET"> GET
+                            <br>
+                            <input onclick="selectMethod('POST')" type="radio" name="method" value="POST"> POST
+                            <br>
+                            <input onclick="selectMethod('PUT')" type="radio" name="method" value="PUT"> PUT
+                            <br>
+                            <input onclick="selectMethod('DELETE')" type="radio" name="method" value="DELETE"> DELETE
+                            <br>
+                        </div>
+
+                    </div>
+                    <div class="fildHolder" id="postData">
+                        <label>Data To Send:</label>
+                        <span>
+                            <textarea rows="8" cols="50" name="data" id="data">
+
+                                    </textarea>
+                            <div class="hint">
+                                <pre>
+                                            <code>
+Example:
+{"name":"test1","salary":"1123","age":"23"}	
+                                            </code>
+                                        </pre>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="fildHolder">
+                        <label>Headers (optional):</label>
+                        <span>
+                            <textarea rows="8" cols="50" name="headers" id="headers">
+
+                                    </textarea>
+                            <div class="hint">
+                                <pre>
+                                            <code>
+Example:
+[
+    ["Content-Type", "application/xml; charset=utf-8"],
+    ["Accept-Language", "en-US"]
+]
+                                            </code>
+                                        </pre>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="fildHolder submitButton">
+                        <input type="button" value="Submit" onclick="callAjax()" />
+                    </div>
+                </form>
+
+            </div>
+            <hr>
+            <div class="outPutDisplayWrap">
+                <h4>
+                    Code Sample:
+                </h4>
+                <pre class="code" id="sampleCode">
+
+                </pre>
+                <hr>
+                <h4>
+                    Response:
+                </h4>
+                <pre id="outPutDisplay">
+                    No calls done yet
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="docWrap">
+        <div class="container">
+            <h4 class="title">Documentation</h4>
+            <div class="documentation">
+                <div>
+                    <label>
+                        Introduction
+                    </label>
+                    <p>
+                        This is is a javascript librery to handle all XMLHttpRequest. This librery is build based on
+                        only javascript with no other
+                        dependencies. As a result it is lightweight and very much optimized.
+
+                    </p>
+                    <hr>
+                    <label>
+                        Advantages
+                    </label>
+                    <p>
+                        1. Based on javascript only, so it will run in all browsers.
+                        <br> 2. Highly optimized.
+                        <br> 3. No jQuery used.
+                        <br> 4. No other dependencies.
+                    </p>
+                    <hr>
+                    <label>
+                        Syntax
+                    </label>
+                    <p>
+                        For GET method : httR.get(options);
+                        <br> For POST method : httR.post(options);
+                        <br> For DELETE method : httR.delete(options);
+                        <br> For PUT method : httR.put(options);
+                        <br>
+                    </p>
+                    <hr>
+                    <label>options</label>
+                    <p>
+
+                    <pre>
+        {
+            url: '',
+            data: {},
+            headers: [],
+            cache: false,
+            async: true,
+            success:function(response, status){
+                
+            },
+            error:function(response, status){
+                
+            },
+
+        };
+</pre>
+                    </p>
+                    <hr>
+                    <label>Each Option explanation</label>
+                    <p>
+                    <table>
+                        <tr>
+                            <th>Option Name</th>
+                            <th>Description</th>
+                            <th>Is Required</th>
+                            <th>default value</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                url
+                            </th>
+                            <td>
+                                Api End Point. The url to be called is provided in this option.
+                            </td>
+                            <td>
+                                Yes
+                            </td>
+                            <td>
+                                NA
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                data
+                            </th>
+                            <td>
+                                Data to be send via post or pur methods. Data should be in JSON format
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                {}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                headers
+                            </th>
+                            <td>
+                                Headers to be passed in the request. Headers should be in in array format. Example
+
+                                <code>
+                                        Example:<br>
+                                        [ 
+                                            <div class="sampleCodeIndentLevel1">
+                                               ["Content-Type", "application/xml; charset=utf-8"],<br>
+                                               ["Accept-Language", "en-US"],<br>
+                                            </div>
+                                        ]
+                                    </code>
+
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                {}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                async
+                            </th>
+                            <td>
+                                true/false.
+                                <br> If determines if the call will be synchronous or asynchronous.
+                                <br>
+                                <label>true:</label> asynchronous call.
+                                <br>
+                                <label>false:</label> synchronous call.
+                                <br>
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                true
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                cache
+                            </th>
+                            <td>
+                                Enable/disable caching
+
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                true
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                success
+                            </th>
+                            <td>
+                                Success Callback function. XMLHttpRequest request is run successfully and response came,
+                                this callback function is hit.
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                NA
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                error
+                            </th>
+                            <td>
+                                Error Callback function. XMLHttpRequest request is run complete, but server returned
+                                some error, this function is hit.
+                            </td>
+                            <td>
+                                No
+                            </td>
+                            <td>
+                                NA
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br style="clear: both">
+</body>
+<script>
+    var method = "GET";
+    function selectMethod(val) {
+        method = val;
+        var divsToHide = document.getElementsByClassName("exmplUrl");
+        for (var i = 0; i < divsToHide.length; i++) {
+
+            divsToHide[i].style.display = "none"; // depending on what you're doing
+        }
+        //document.getElementsByClassName("exmplUrl").style.display = 'none';
+        document.querySelectorAll('.exmplUrl.' + val)[0].style.display = 'block';
+
+        if (val == 'POST' || val == 'PUT') {
+            document.getElementById("postData").style.display = 'block';
+        } else {
+            document.getElementById("postData").style.display = 'none';
+        }
+
+    }
+    selectMethod(method);
+
+
+    function displaycode(url, method, data, headers) {
+        //data = data.length > 0 ? JSON.parse(data) : {}; 
+        //headers = headers.length > 0 ? JSON.parse(data) : {};
+        var line1 = "";
+
+        switch (method) {
+            case 'GET':
+                line1 = "httR.get({";
+                break;
+
+            case 'POST':
+                line1 = "httR.post({";
+                break;
+
+            case 'PUT':
+                line1 = "httR.put({";
+                break;
+
+            case 'DELETE':
+                line1 = "httR.delete({";
+                break;
+        }
+
+        var html = line1 + "<div class='sampleCodeIndentLevel1'>";
+        html += "<label>url:</label>'" + url + "',<br>";
+        if (data.length > 0 && (method == 'POST' || method == 'PUT')) {
+            html += "<label>data:</label>" + data + ",<br>";
+        }
+
+        if (headers.length > 0) {
+            html += "<label>headers:</label>" + headers + ",<br>";
+        }
+
+        html += "<label>success:</label> function (response, status) { <div class='sampleCodeIndentLevel2'>" + " // success response callback; <br> console.log(response); </div>},<br>";
+        html += "<label>error:</label> function (response, status) { <div class='sampleCodeIndentLevel2'>" + " // error response callback; <br> console.log('error status : '+status); </div>},<br>";
+        html += "</div> })";
+
+        document.getElementById("sampleCode").innerHTML = html;
+
+    }
+    function callAjax() {
+        document.getElementById("outPutDisplay").innerHTML = "<img class='loader' src='spinner.gif' />"
+        var url = document.getElementById("url").value.trim();
+        //var method = document.getElementById("method").value.trim();
+        var data = document.getElementById("data").value.trim();
+        var headers = document.getElementById("headers").value.trim();
+        displaycode(url, method, data, headers);
+        switch (method) {
+            case 'POST':
+                console.log("data", data);
+                httR.post({
+                    url: url,
+                    data: data.length > 0 ? JSON.parse(data) : {},
+                    headers: headers.length > 0 ? JSON.parse(headers) : {},
+                    success: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = response;
+                        console.log("success from POST : response", response);
+                    },
+                    error: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = "There was some error with status code : " + status;
+                        console.log("error  from POST : response, status", response, status);
+                    }
+                })
+                break;
+
+            case 'DELETE':
+                httR.delete({
+                    url: url,
+                    //data: data.length > 0 ? JSON.parse(data) : {},
+                    headers: headers.length > 0 ? JSON.parse(headers) : {},
+                    success: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = response;
+                        console.log("success from DELETE : response", response);
+                    },
+                    error: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = "There was some error with status code : " + status;
+                        console.log("error  from DELETE : response, status", response, status);
+                    }
+                })
+                break;
+
+            case 'PUT':
+                httR.put({
+                    url: url,
+                    data: data.length > 0 ? JSON.parse(data) : {},
+                    headers: headers.length > 0 ? JSON.parse(headers) : {},
+                    success: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = response;
+                        console.log("success from put : response", response);
+                    },
+                    error: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = "There was some error with status code : " + status;
+                        console.log("error  from put : response, status", response, status);
+                    }
+                })
+                break;
+
+            default:
+                httR.get({
+                    url: url,
+                    //data:data,
+                    headers: headers.length > 0 ? JSON.parse(headers) : {},
+                    success: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = response;
+                        console.log("success from get : response", response);
+                    },
+                    error: function (response, status) {
+                        document.getElementById("outPutDisplay").innerHTML = "There was some error with status code : " + status;
+                        console.log("error  from get : response, status", response, status);
+                    }
+                })
+                break;
+
+        }
+    }
+</script>
+
+</html>
